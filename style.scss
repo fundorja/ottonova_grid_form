@@ -109,7 +109,7 @@ form {
   backdrop-filter: blur(8px);
   box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.3);
   display: grid;
-  grid-template: 5% repeat(4, 1fr) 14% / repeat(6, 1fr);
+  grid-template: 5% repeat(4, 1fr) 12% / repeat(6, 1fr);
   gap: 1rem;
 
   h1 {
@@ -133,6 +133,8 @@ form {
   #submit {
     grid-column: 3/5;
     align-self: end;
+    background: var(--text-color);
+    color: white;
   }
   label:not(.fake-label ~ label),
   .fake-label {
