@@ -11,52 +11,58 @@
   </head>
   <body>
     <div class="grid-container">
-      <!-- <div class="clouds"></div> -->
+      <div class="clouds"></div>
       <div id="logo"></div>
       <form action="">
-        <h1>Lass dich von uns kontaktieren</h1>
+        <h1>Triff dich mit uns</h1>
         <div class="input-container">
           <label for="name">Name</label>
-          <input type="text" name="name" id="name" placeholder="" required />
+          <input type="text" name="name" id="name" placeholder="Mein Name" />
           <p class="hint"></p>
         </div>
 
         <div class="input-container">
           <label for="email">Email</label>
-          <input type="email" name="email" id="email" placeholder="" required />
+          <input type="email" name="email" id="email" placeholder="Meine M@il" />
           <p class="hint"></p>
         </div>
 
         <div class="input-container">
           <label for="timeslot">Termin wählen</label>
-          <select name="timeslot" id="timeslot" required>
+          <select name="timeslot" id="timeslot">
             <option value="choose">Termin wählen</option>
           </select>
           <p class="hint"></p>
         </div>
 
         <div class="input-container gender-container">
-          <div class="gender-label">Geschlecht wählen</div>
-          <label>
-            <input type="radio" name="gender" id="male" value="male" class="radiobtn" required />
+          <div class="fake-label">Geschlecht wählen</div>
+          <!-- <div class="radio-order"> -->
+          <label for="male">
+            <input type="radio" name="gender" id="male" value="male" class="radiobtn" />
             <div class="gender-select gm">Männlich</div>
           </label>
-          <label>
+          <label for="female">
             <input type="radio" name="gender" id="female" value="female" class="radiobtn" />
             <div class="gender-select gf">Weilblich</div>
           </label>
-          <label>
+          <label for="diverse">
             <input type="radio" name="gender" id="diverse" value="diverse" class="radiobtn" />
             <div class="gender-select gd">Divers</div>
           </label>
+          <!-- </div> -->
           <p class="hint"></p>
         </div>
 
-        <div class="input-container">
-          <input type="checkbox" name="contact" id="contact" required />
-          <label for="contact">Ich möchte kontaktiert werden</label>
+        <div class="input-container contact-container">
+          <div class="fake-label">Ich möchte Kontaktiert werden</div>
+          <label for="contact">
+            <input type="checkbox" name="contact" id="contact" />
+            <div class="contact-select">OK!</div>
+          </label>
+          <p class="hint"></p>
         </div>
-        <input type="submit" value="submit" id="submit" />
+        <input type="submit" value="senden" id="submit" />
       </form>
     </div>
   </body>

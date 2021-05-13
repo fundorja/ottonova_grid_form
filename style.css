@@ -1,6 +1,5 @@
 :root {
-  --main-color: #0077ff;
-  --main-color-reduced: rgba(0, 119, 255, 0.3);
+  --main-color: rgba(0, 119, 255, 1);
   --error-color: #ff5252;
   --text-color: #00104b;
   --text-grey: #999fb7;
@@ -34,12 +33,14 @@ body {
   background-size: contain;
   z-index: -5;
   opacity: 0.3;
+  -webkit-transform: translateY(-5rem);
+          transform: translateY(-5rem);
 }
 
 .grid-container {
   display: grid;
   height: 100vh;
-  grid-template: 15% auto 50%/19% 60% 19%;
+  grid-template: 15% auto 40%/19% 60% 19%;
   grid-template-areas: ". logo ." ". form ." ". . .";
   grid-gap: 1%;
 }
@@ -57,13 +58,13 @@ body {
 form {
   grid-area: form;
   padding: 1rem 2rem;
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%);
-  -webkit-backdrop-filter: blur(3px);
-          backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  -webkit-box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.3);
+          box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.3);
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template: 5% 1fr 1fr 1fr 1fr 14%/1fr 1fr 1fr 1fr 1fr 1fr;
   gap: 1rem;
-  /* .input-container label + label .gender-select { */
 }
 form h1 {
   text-align: center;
@@ -72,6 +73,7 @@ form h1,
 form .input-container {
   font-size: 1.3rem;
   grid-column: 1/7;
+  align-self: end;
 }
 form .input-container:first-of-type {
   grid-column: 1/4 !important;
@@ -79,18 +81,22 @@ form .input-container:first-of-type {
 form .input-container:nth-of-type(2) {
   grid-column: 4/7 !important;
 }
-form input[type=submit] {
+form #submit {
   grid-column: 3/5;
+  align-self: end;
 }
-form label:not(.gender-label ~ label),
-form .gender-label {
+form label:not(.fake-label ~ label),
+form .fake-label {
   color: white;
   font-size: 0.8rem;
   font-weight: 600;
   margin-left: 0.1rem;
 }
-form label:not(.gender-label ~ label)::after,
-form .gender-label::after {
+form .fake-label ~ label {
+  height: 3px;
+}
+form label:not(.fake-label ~ label):not(.contact-container > label)::after,
+form .fake-label::after {
   content: "*";
 }
 form .hint {
@@ -98,10 +104,26 @@ form .hint {
   font-size: 0.7rem;
   position: absolute;
 }
+form input::-webkit-input-placeholder {
+  color: white;
+}
+form input::-moz-placeholder {
+  color: white;
+}
+form input:-ms-input-placeholder {
+  color: white;
+}
+form input::-ms-input-placeholder {
+  color: white;
+}
+form input::placeholder {
+  color: white;
+}
 form input:not([type=checkbox]):not([type=radio]),
 form select,
 form option,
-form .gender-select {
+form .gender-select,
+form .contact-select {
   background: white;
   padding: 0.5rem 0.75rem;
   border: var(--border);
@@ -115,7 +137,8 @@ form select:focus {
           box-shadow: 0 0 0 3px var(--main-color);
 }
 form #submit,
-form .gender-select {
+form .gender-select,
+form .contact-select {
   cursor: pointer;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -124,8 +147,11 @@ form .gender-select {
   overflow: hidden;
 }
 form #submit:hover,
-form .gender-select:hover {
-  background: var(--main-color-reduced);
+form .gender-select:hover,
+form .contact-select:hover,
+form input:hover,
+form select:hover {
+  background: rgba(0, 119, 255, 0.3) !important;
   color: white;
 }
 form .form-element .error-message {
@@ -135,16 +161,23 @@ form .form-element .error-message {
   font-size: 12px;
   color: var(--error-color);
 }
-form .radiobtn {
+form .radiobtn,
+form #contact {
   opacity: 0;
   position: fixed;
 }
 form .gender-select {
   width: calc(100% / 3 - 1rem * 0.85);
   display: inline-block;
+  vertical-align: bottom;
   text-align: center;
   background: white;
   z-index: -2;
+  -ms-flex-item-align: baseline;
+      align-self: baseline;
+}
+form .contact-select {
+  text-align: center;
 }
 form .gender-container label:nth-of-type(2) .gender-select {
   margin: 0 1rem;
@@ -159,26 +192,58 @@ form .gd {
   color: #ade785;
 }
 form .radiobtn:checked + .gender-select,
-form .selected {
+form #contact:checked + .contact-select {
   background: var(--main-color);
   color: white;
 }
+form .error {
+  -webkit-box-shadow: 0 0 0 3px var(--error-color);
+          box-shadow: 0 0 0 3px var(--error-color);
+}
 
+@media screen and (max-width: 1150px) {
+  * {
+    font-size: 18px;
+  }
+
+  body {
+    background: rgba(0, 119, 255, 0.5);
+  }
+
+  .grid-container {
+    grid-template: 12% auto 48%/8% auto 8%;
+    grid-template-areas: ". logo ." ". form ." ". . .";
+    gap: 1rem;
+  }
+
+  form {
+    padding: 2%;
+    gap: 1rem;
+  }
+}
 @media screen and (max-width: 750px) {
   * {
     font-size: 16px;
   }
 
+  .clouds {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+
   .grid-container {
-    grid-template: 15% auto 35%/2% auto 2%;
+    grid-template: 12% auto 48%/2% auto 2%;
     grid-template-areas: ". logo ." ". form ." ". . .";
-    grid-gap: 2%;
   }
 
   form {
     background: none;
     padding: 2%;
-    gap: 20px;
+    gap: 1rem;
+    -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
   }
 }
 /*# sourceMappingURL=style.css.map */
