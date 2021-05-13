@@ -42,7 +42,11 @@ body {
   display: grid;
   height: 100vh;
   grid-template: 5% 20% 40% 30%/5% auto 5%;
-  grid-template-areas: ". . ." ". logo ." ". ty ." ". . .";
+  grid-template-areas:
+    ". . ."
+    ". logo ."
+    ". ty ."
+    ". . .";
   grid-gap: 1%;
 }
 .ty-grid .ty-container {
@@ -80,7 +84,10 @@ body {
   display: grid;
   height: 100vh;
   grid-template: 15% auto 40%/19% 60% 19%;
-  grid-template-areas: ". logo ." ". form ." ". . .";
+  grid-template-areas:
+    ". logo ."
+    ". form ."
+    ". . .";
   grid-gap: 1%;
 }
 
@@ -272,7 +279,10 @@ form .error {
 
   .grid-container {
     grid-template: 12% auto 48%/8% auto 8%;
-    grid-template-areas: ". logo ." ". form ." ". . .";
+    grid-template-areas:
+      ". logo ."
+      ". form ."
+      ". . .";
     gap: 0;
   }
 
@@ -296,7 +306,10 @@ form .error {
 
   .grid-container {
     grid-template: 12% auto 48%/2% auto 2%;
-    grid-template-areas: ". logo ." ". form ." ". . .";
+    grid-template-areas:
+      ". logo ."
+      ". form ."
+      ". . .";
   }
 
   form {
