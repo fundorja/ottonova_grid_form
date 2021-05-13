@@ -13,9 +13,38 @@
       <div class="clouds"></div>
       <div id="logo2"></div>
       <div class="ty-container">
-        <h1>Danke für deine Teilnahme</h1>
-        <a href="./index.html">zurück</a>
+        <h1></h1>
+        <a href="./index.html">DANKE</a>
       </div>
     </div>
   </body>
+  <script>
+    // look for submitted parameters
+    const query = window.location.search
+    console.log(query)
+
+    const urlPara = new URLSearchParams(query)
+
+    // get all parameters
+    const name = urlPara.get("name")
+    console.log(name)
+    const email = urlPara.get("email")
+    console.log(email)
+    const timeslot = urlPara.get("timeslot")
+    console.log(timeslot)
+    const gender = urlPara.get("gender")
+    console.log(gender)
+    const contact = urlPara.get("contact")
+    let choice = ""
+    contact == "on"
+      ? (choice = `Ich möchte das sich am ${timeslot} jemand bei mir meldet!`)
+      : (choice = `Ich werde mich am ${timeslot} selber melden!`)
+    console.log(contact)
+
+    // build final text
+    const text = document.querySelector("h1")
+    text.innerText = `Mein Name ist ${name}, ich bin ${gender} 
+    und meine Mailadresse ist ${email}. 
+    ${choice}`
+  </script>
 </html>

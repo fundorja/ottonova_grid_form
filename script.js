@@ -32,6 +32,7 @@ function timeMaps(times) {
       day: "2-digit"
     })
     const start = `${startDatum} von ${startZeit}`
+    const termin = `${startDatum} um ${startZeit} Uhr`
 
     // customize end time
     const endZeit = new Date(slot.end).toLocaleTimeString([], {
@@ -40,7 +41,7 @@ function timeMaps(times) {
     })
 
     // add options into dropdown
-    const dateTimes = `<option value="${slot.start}">${start} bis ${endZeit} Uhr</option>`
+    const dateTimes = `<option value="${termin}">${start} bis ${endZeit} Uhr</option>`
     return `<select>${dateTimes}</select>`
   })
   return startzeit
@@ -145,7 +146,7 @@ submit.addEventListener("click", e => {
   checkMail()
   checkMailDetails()
   checkRadio()
-  checkContact()
+  // checkContact()
   if (formError.some(err => err === true)) {
     e.preventDefault()
   }
@@ -157,7 +158,7 @@ form.addEventListener("submit", e => {
   checkMail()
   checkMailDetails()
   checkRadio()
-  checkContact()
+  // checkContact()
   if (formError === true) {
     e.preventDefault()
   }
@@ -184,5 +185,5 @@ radios.forEach(radio => {
 })
 // contact check
 contact.addEventListener("input", e => {
-  checkContact(e)
+  // checkContact(e)
 })

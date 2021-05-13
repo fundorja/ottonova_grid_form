@@ -40,19 +40,39 @@ body {
 .ty-grid {
   display: grid;
   height: 100vh;
-  grid-template: 5% 20% 20% 20%/5% auto 5%;
+  grid-template: 5% 20% 40% 30%/5% auto 5%;
   grid-template-areas: ". . ." ". logo ." ". ty ." ". . .";
   grid-gap: 1%;
 }
-
-.ty-container {
+.ty-grid .ty-container {
   grid-area: ty;
   text-align: center;
   align-self: center;
 }
-.ty-container a {
+.ty-grid .ty-container a {
+  max-width: 140px;
+  grid-area: link;
   text-decoration: none;
-  color: var(--main-color);
+  color: white;
+  padding: 0.5rem 1.5rem;
+  background: var(--main-color);
+  display: block;
+  margin: 2rem auto;
+  font-weight: 600;
+  letter-spacing: 1px;
+  line-height: 1.5rem;
+  -webkit-transform: translateY(0) scale(1);
+          transform: translateY(0) scale(1);
+  -webkit-box-shadow: 0 0 0 var(--text-color);
+          box-shadow: 0 0 0 var(--text-color);
+  -webkit-transition: 80ms all;
+  transition: 80ms all;
+}
+.ty-grid .ty-container a:hover {
+  -webkit-transform: translateY(-3px) scale(1.05);
+          transform: translateY(-3px) scale(1.05);
+  -webkit-box-shadow: 0 2px 6px 1px rgba(0, 16, 75, 0.75);
+          box-shadow: 0 2px 6px 1px rgba(0, 16, 75, 0.75);
 }
 
 .grid-container {
@@ -125,10 +145,6 @@ form .fake-label {
 }
 form .fake-label {
   margin-bottom: 3px;
-}
-form label:not(.fake-label ~ label):not(.contact-container > label)::after,
-form .fake-label::after {
-  content: "*";
 }
 form .hint {
   color: var(--error-color);
@@ -229,6 +245,13 @@ form .radiobtn:checked + .gender-select,
 form #contact:checked + .contact-select {
   background: var(--main-color);
   color: white;
+}
+form #contact:checked + .contact-select {
+  font-size: 0;
+}
+form #contact:checked + .contact-select::before {
+  content: "Ja";
+  font-size: 1rem;
 }
 form .error {
   -webkit-box-shadow: 0 0 0 3px var(--error-color);

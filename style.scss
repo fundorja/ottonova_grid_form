@@ -36,22 +36,40 @@ body {
 .ty-grid {
   display: grid;
   height: 100vh;
-  grid-template: 5% 20% 20% 20% / 5% auto 5%;
+  grid-template: 5% 20% 40% 30% / 5% auto 5%;
   grid-template-areas:
     ". . ."
     ". logo ."
     ". ty ."
     ". . .";
   grid-gap: 1%;
-}
-.ty-container {
-  grid-area: ty;
-  text-align: center;
-  align-self: center;
 
-  a {
-    text-decoration: none;
-    color: var(--main-color);
+  .ty-container {
+    grid-area: ty;
+    text-align: center;
+    align-self: center;
+
+    a {
+      max-width: 140px;
+      grid-area: link;
+      text-decoration: none;
+      color: white;
+      padding: 0.5rem 1.5rem;
+      background: var(--main-color);
+      display: block;
+      margin: 2rem auto;
+      font-weight: 600;
+      letter-spacing: 1px;
+      line-height: 1.5rem;
+      transform: translateY(0) scale(1);
+      box-shadow: 0 0 0 var(--text-color);
+      transition: 80ms all;
+
+      &:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 2px 6px 1px rgba(0, 16, 75, 0.75);
+      }
+    }
   }
 }
 .grid-container {
@@ -126,10 +144,10 @@ form {
   .fake-label {
     margin-bottom: 3px;
   }
-  label:not(.fake-label ~ label):not(.contact-container > label)::after,
-  .fake-label::after {
-    content: "*";
-  }
+  // label:not(.fake-label ~ label):not(.contact-container > label)::after,
+  // .fake-label::after {
+  //   content: "*";
+  // }
   .hint {
     color: var(--error-color);
     font-size: 0.7rem;
@@ -217,6 +235,13 @@ form {
   #contact:checked + .contact-select {
     background: var(--main-color);
     color: white;
+  }
+  #contact:checked + .contact-select {
+    font-size: 0;
+  }
+  #contact:checked + .contact-select::before {
+    content: "Ja";
+    font-size: 1rem;
   }
   .error {
     box-shadow: 0 0 0 3px var(--error-color);
