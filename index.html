@@ -11,25 +11,25 @@
   </head>
   <body>
     <div class="grid-container">
-      <div class="clouds"></div>
+      <!-- <div class="clouds"></div> -->
       <div id="logo"></div>
       <form action="">
-        <h1>Meet the founders</h1>
+        <h1>Lass dich von uns kontaktieren</h1>
         <div class="input-container">
           <label for="name">Name</label>
-          <input type="text" name="name" id="name" placeholder="name" />
+          <input type="text" name="name" id="name" placeholder="" required />
           <p class="hint"></p>
         </div>
 
         <div class="input-container">
           <label for="email">Email</label>
-          <input type="email" name="email" id="email" placeholder="email" />
+          <input type="email" name="email" id="email" placeholder="" required />
           <p class="hint"></p>
         </div>
 
         <div class="input-container">
           <label for="timeslot">Termin wählen</label>
-          <select name="timeslot" id="timeslot">
+          <select name="timeslot" id="timeslot" required>
             <option value="choose">Termin wählen</option>
           </select>
           <p class="hint"></p>
@@ -38,7 +38,7 @@
         <div class="input-container gender-container">
           <div class="gender-label">Geschlecht wählen</div>
           <label>
-            <input type="radio" name="gender" id="male" value="male" class="radiobtn" />
+            <input type="radio" name="gender" id="male" value="male" class="radiobtn" required />
             <div class="gender-select gm">Männlich</div>
           </label>
           <label>
@@ -53,7 +53,7 @@
         </div>
 
         <div class="input-container">
-          <input type="checkbox" name="contact" id="contact" />
+          <input type="checkbox" name="contact" id="contact" required />
           <label for="contact">Ich möchte kontaktiert werden</label>
         </div>
         <input type="submit" value="submit" id="submit" />
