@@ -5,15 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32x32.png" />
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./script.js" defer></script>
     <title>ottonova Coding Challenge</title>
   </head>
   <body>
     <div class="grid-container">
+      <div class="clouds"></div>
       <div id="logo"></div>
-      <h1>Meet the founders</h1>
       <form action="">
+        <h1>Meet the founders</h1>
         <div class="input-container">
           <label for="name">Name</label>
           <input type="text" name="name" id="name" placeholder="name" />
@@ -27,32 +28,33 @@
         </div>
 
         <div class="input-container">
-          <label for="timeslot">Timeslot</label>
+          <label for="timeslot">Termin wählen</label>
           <select name="timeslot" id="timeslot">
-            <option value="choose">Select Timeslot</option>
+            <option value="choose">Termin wählen</option>
           </select>
           <p class="hint"></p>
         </div>
 
-        <div class="input-container">
+        <div class="input-container gender-container">
+          <div class="gender-label">Geschlecht wählen</div>
           <label>
             <input type="radio" name="gender" id="male" value="male" class="radiobtn" />
-            <div class="gender-select gm">Male</div>
+            <div class="gender-select gm">Männlich</div>
           </label>
           <label>
             <input type="radio" name="gender" id="female" value="female" class="radiobtn" />
-            <div class="gender-select gf">Female</div>
+            <div class="gender-select gf">Weilblich</div>
           </label>
           <label>
             <input type="radio" name="gender" id="diverse" value="diverse" class="radiobtn" />
-            <div class="gender-select gd">Diverse</div>
+            <div class="gender-select gd">Divers</div>
           </label>
           <p class="hint"></p>
         </div>
 
         <div class="input-container">
-          <label for="contact">I would like to be contacted!</label>
           <input type="checkbox" name="contact" id="contact" />
+          <label for="contact">Ich möchte kontaktiert werden</label>
         </div>
         <input type="submit" value="submit" id="submit" />
       </form>
