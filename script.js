@@ -47,7 +47,7 @@ function timeMaps(times) {
 }
 
 // Form validation
-let formError = [false]
+let formError = []
 
 function checkName(e) {
   if (nameField.value.length == 0) {
