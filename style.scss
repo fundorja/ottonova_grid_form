@@ -1,6 +1,6 @@
 :root {
   --main-color: rgba(0, 119, 255, 1);
-  --error-color: #ff5252;
+  --error-color: #cf1170;
   --text-color: #00104b;
   --text-grey: #999fb7;
   --radius: 0.2rem;
@@ -134,6 +134,7 @@ form {
     color: var(--error-color);
     font-size: 0.7rem;
     position: absolute;
+    margin-top: 3px;
   }
   input::placeholder {
     color: white;
@@ -268,10 +269,5 @@ form {
     #submit {
       grid-column: 1/7;
     }
-    // .gender-select {
-    //   display: block;
-    //   margin: 0;
-    //   grid-column: 1/7;
-    // }
   }
 }

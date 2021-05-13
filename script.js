@@ -47,7 +47,7 @@ function timeMaps(times) {
 }
 
 // Form validation
-let formError = false
+let formError = [false]
 
 function checkName(e) {
   if (nameField.value.length == 0) {
@@ -56,7 +56,7 @@ function checkName(e) {
   } else {
     nameField.previousElementSibling.style.color = "white"
     nameField.classList.remove("error")
-    formError = false
+    formError.push(false)
     nameField.nextElementSibling.innerHTML = ""
   }
 }
@@ -69,7 +69,7 @@ function checkMail(e) {
   } else {
     emailField.previousElementSibling.style.color = "white"
     emailField.classList.remove("error")
-    formError = false
+    formError.push(false)
     emailField.nextElementSibling.innerHTML = ""
   }
 }
@@ -92,7 +92,7 @@ function checkMailDetails(e) {
     emailField.previousElementSibling.style.color = "white"
     emailField.nextElementSibling.innerHTML = ""
     emailField.classList.remove("error")
-    formError = false
+    formError.push(false)
   }
 }
 
@@ -105,51 +105,54 @@ function checkRadio(e) {
     radios.forEach(radio => {
       radio.nextElementSibling.classList.remove("error")
     })
-    formError = false
+    formError.push(false)
   } else {
-    radiolabels.querySelector(".fake-label").style.color = "#ff5252"
+    radiolabels.querySelector(".fake-label").style.color = "#cf1170"
     radiolabels.querySelector(".hint").innerHTML = "Pflichtfeld"
     radios.forEach(radio => {
       radio.nextElementSibling.classList.add("error")
     })
-    formError = true
+    formError.push(true)
   }
 }
 
 // check if checkbox checked
 function checkContact(e) {
   if (contact.checked === false) {
-    contact.parentElement.previousElementSibling.style.color = "#ff5252"
+    contact.parentElement.previousElementSibling.style.color = "#cf1170"
     contact.parentElement.nextElementSibling.innerHTML = "Pflichtfeld"
     contact.nextElementSibling.classList.add("error")
-    formError = true
+    formError.push(true)
   } else {
     contact.parentElement.previousElementSibling.style.color = "white"
     contact.parentElement.nextElementSibling.innerHTML = ""
     contact.nextElementSibling.classList.remove("error")
-    formError = false
+    formError.push(false)
   }
 }
 
 //error styles
 function errorStyles(element) {
-  element.previousElementSibling.style.color = "#ff5252"
+  element.previousElementSibling.style.color = "#cf1170"
   element.classList.add("error")
-  formError = true
+  formError.push(true)
 }
 
 // Eventlisteners
 submit.addEventListener("click", e => {
+  formError = []
   checkName()
   checkMail()
   checkMailDetails()
   checkRadio()
   checkContact()
-  if (formError === true) {
+  if (formError.some(err => err === true)) {
     e.preventDefault()
   }
+  console.log(formError)
 })
 form.addEventListener("submit", e => {
+  formError = []
   checkName()
   checkMail()
   checkMailDetails()

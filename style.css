@@ -1,6 +1,6 @@
 :root {
   --main-color: rgba(0, 119, 255, 1);
-  --error-color: #ff5252;
+  --error-color: #cf1170;
   --text-color: #00104b;
   --text-grey: #999fb7;
   --radius: 0.2rem;
@@ -134,6 +134,7 @@ form .hint {
   color: var(--error-color);
   font-size: 0.7rem;
   position: absolute;
+  margin-top: 3px;
 }
 form input::-webkit-input-placeholder {
   color: white;
