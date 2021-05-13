@@ -1,7 +1,11 @@
+const form = document.querySelector("form")
 const submit = document.querySelector("#submit")
 const timeslot = document.querySelector("#timeslot")
-const radiobuttons = document.querySelectorAll(".datiobtn")
-const radiolabels = document.querySelectorAll(".gender-select")
+const nameField = document.querySelector("#name")
+const emailField = document.querySelector("#email")
+const radios = document.querySelectorAll(".radiobtn")
+const radiolabels = document.querySelector(".gender-container")
+const contact = document.querySelector("#contact")
 
 // get info from dates.json file
 const fetchDates = fetch("./dates.json")
@@ -42,48 +46,140 @@ function timeMaps(times) {
   return startzeit
 }
 
-submit.addEventListener("click", e => {
-  e.preventDefault()
-  console.log(e)
-})
+// Form validation
+let formError = false
 
-function valFunction() {
-  var name, email, text
-
-  name = document.getElementById("name")
-  pwd = document.getElementById("password")
-  cpwd = document.getElementById("cpassword")
-  email = document.getElementById("email")
-
-  if (name.value.length > 26) {
-    text = "Das ist vielleicht zu lang!"
-  } else if (name.value.length >= 10 && name.value.length <= 16) {
-    text = "Okay..."
-  } else if (name.value.length >= 3 && name.value.length < 10) {
-    text = "Schöner Name!"
-  } else if (name.value.length < 3 && name.value.length > 0) {
-    text = "Zu kurz!"
-  } else if (name.value.length == 0) {
-    text = "Pflichtfeld"
+function checkName(e) {
+  if (nameField.value.length == 0) {
+    errorStyles(nameField)
+    nameField.nextElementSibling.innerHTML = "Pflichtfeld"
   } else {
-    text = ""
+    nameField.previousElementSibling.style.color = "white"
+    nameField.classList.remove("error")
+    formError = false
+    nameField.nextElementSibling.innerHTML = ""
   }
-  name.nextElementSibling.innerHTML = text
+}
 
-  if (email.value.length == 0) {
-    text = "Pflichtfeld"
-  } else if (email.value.length > 0 && email.value.length < 9) {
-    text = "..."
-  } else if (/^(?=.*[@])/.test(email.value.toLowerCase()) == false) {
-    text = "Wo ist das @?"
+// email check if empty
+function checkMail(e) {
+  if (emailField.value.length == 0) {
+    errorStyles(emailField)
+    emailField.nextElementSibling.innerHTML = "Pflichtfeld"
+  } else {
+    emailField.previousElementSibling.style.color = "white"
+    emailField.classList.remove("error")
+    formError = false
+    emailField.nextElementSibling.innerHTML = ""
+  }
+}
+// email check if correct
+function checkMailDetails(e) {
+  if (emailField.value.length == 0) {
+    errorStyles(emailField)
+    emailField.nextElementSibling.innerHTML = "Pflichtfeld"
+  } else if (/^(?=.*[@])/.test(emailField.value.toLowerCase()) == false) {
+    errorStyles(emailField)
+    emailField.nextElementSibling.innerHTML = "Das @ fehlt"
   } else if (
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-      email.value.toLowerCase()
+      emailField.value.toLowerCase()
     ) == false
   ) {
-    text = "Das ist keine gültige Email!"
+    errorStyles(emailField)
+    emailField.nextElementSibling.innerHTML = "Das ist keine gültige Emailadresse"
   } else {
-    text = ""
+    emailField.previousElementSibling.style.color = "white"
+    emailField.nextElementSibling.innerHTML = ""
+    emailField.classList.remove("error")
+    formError = false
   }
-  email.nextElementSibling.innerHTML = text
 }
+
+// check if radiobutton checked
+function checkRadio(e) {
+  const radiochecked = [...radios]
+  if (radiochecked.some(radio => radio.checked)) {
+    radiolabels.querySelector(".fake-label").style.color = "white"
+    radiolabels.querySelector(".hint").innerHTML = ""
+    radios.forEach(radio => {
+      radio.nextElementSibling.classList.remove("error")
+    })
+    formError = false
+  } else {
+    radiolabels.querySelector(".fake-label").style.color = "#ff5252"
+    radiolabels.querySelector(".hint").innerHTML = "Pflichtfeld"
+    radios.forEach(radio => {
+      radio.nextElementSibling.classList.add("error")
+    })
+    formError = true
+  }
+}
+
+// check if checkbox checked
+function checkContact(e) {
+  if (contact.checked === false) {
+    contact.parentElement.previousElementSibling.style.color = "#ff5252"
+    contact.parentElement.nextElementSibling.innerHTML = "Pflichtfeld"
+    contact.nextElementSibling.classList.add("error")
+    formError = true
+  } else {
+    contact.parentElement.previousElementSibling.style.color = "white"
+    contact.parentElement.nextElementSibling.innerHTML = ""
+    contact.nextElementSibling.classList.remove("error")
+    formError = false
+  }
+}
+
+//error styles
+function errorStyles(element) {
+  element.previousElementSibling.style.color = "#ff5252"
+  element.classList.add("error")
+  formError = true
+}
+
+// Eventlisteners
+submit.addEventListener("click", e => {
+  checkName()
+  checkMail()
+  checkMailDetails()
+  checkRadio()
+  checkContact()
+  if (formError === true) {
+    e.preventDefault()
+  }
+})
+form.addEventListener("submit", e => {
+  checkName()
+  checkMail()
+  checkMailDetails()
+  checkRadio()
+  checkContact()
+  if (formError === true) {
+    e.preventDefault()
+  }
+})
+// name check if empty
+nameField.addEventListener("focus", e => {
+  checkName(e)
+})
+nameField.addEventListener("input", e => {
+  checkName(e)
+})
+// email check
+emailField.addEventListener("focus", e => {
+  checkMail(e)
+})
+emailField.addEventListener("input", e => {
+  checkMail(e)
+})
+// gender check
+radios.forEach(radio => {
+  radio.addEventListener("input", e => {
+    checkRadio(e)
+  })
+})
+// contact check
+contact.addEventListener("input", e => {
+  checkContact(e)
+})

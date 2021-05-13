@@ -37,6 +37,24 @@ body {
           transform: translateY(-5rem);
 }
 
+.ty-grid {
+  display: grid;
+  height: 100vh;
+  grid-template: 5% 20% 20% 20%/5% auto 5%;
+  grid-template-areas: ". . ." ". logo ." ". ty ." ". . .";
+  grid-gap: 1%;
+}
+
+.ty-container {
+  grid-area: ty;
+  text-align: center;
+  align-self: center;
+}
+.ty-container a {
+  text-decoration: none;
+  color: var(--main-color);
+}
+
 .grid-container {
   display: grid;
   height: 100vh;
@@ -48,6 +66,16 @@ body {
 #logo {
   grid-area: logo;
   background: url("./img/claim_logo.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+  width: 100%;
+}
+
+#logo2 {
+  grid-area: logo;
+  background: url("./img/o.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -81,6 +109,9 @@ form .input-container:first-of-type {
 form .input-container:nth-of-type(2) {
   grid-column: 4/7 !important;
 }
+form .contact-container {
+  grid-column: 2/6;
+}
 form #submit {
   grid-column: 3/5;
   align-self: end;
@@ -92,8 +123,8 @@ form .fake-label {
   font-weight: 600;
   margin-left: 0.1rem;
 }
-form .fake-label ~ label {
-  height: 3px;
+form .fake-label {
+  margin-bottom: 3px;
 }
 form label:not(.fake-label ~ label):not(.contact-container > label)::after,
 form .fake-label::after {
@@ -244,6 +275,12 @@ form .error {
             backdrop-filter: none;
     -webkit-box-shadow: none;
             box-shadow: none;
+    grid-template: 5% 1fr 1fr 1fr 1fr 14%/1fr 1fr 1fr 1fr 1fr 1fr;
+  }
+  form .input-container,
+form .contact-container,
+form #submit {
+    grid-column: 1/7;
   }
 }
 /*# sourceMappingURL=style.css.map */
